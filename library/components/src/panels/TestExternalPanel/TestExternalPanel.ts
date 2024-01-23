@@ -1,0 +1,45 @@
+import { HtmlElementWithCanvas, HtmlElementWithResource, createPanel } from "@synanetics/panel-library"
+import panelDetails from "./index"
+
+type TestExternalPanelType = HtmlElementWithCanvas & HtmlElementWithResource
+
+export class TestExternalPanel extends createPanel<TestExternalPanelType, HTMLElement>(
+  panelDetails.schema,
+  HTMLElement
+) {
+  shadow: ShadowRoot
+  renderCount: number
+
+  constructor() {
+    super()
+    this.renderCount = 0
+  }
+
+  connectedCallback() {
+    super.connectedCallback && super.connectedCallback()
+
+    this.render()
+  }
+
+  render() {
+    this.renderCount += 1
+    const patientResource = (this.getResources("Patient") || [])[0]
+
+    let name = "No patient in context"
+
+    if (patientResource) {
+      const patientName = patientResource.name[0]
+      name = `${patientName.given.join(" ")} ${patientName.family}`
+    }
+
+    this.shadow.innerHTML = `
+      <div>
+        <h3>TestExternalPanel</h3>
+        <div>I have rendered ${this.renderCount} times</div>
+        <div>Patient: ${name}</div>
+      </div>
+    `
+  }
+}
+
+customElements.define(panelDetails.schema.panelTag, TestExternalPanel)

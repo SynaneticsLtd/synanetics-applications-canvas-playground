@@ -1,0 +1,28 @@
+{
+  "name": "library-components",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "panel-library ./src/panels ./dist",
+    "watch": "panel-library ./src/panels ./dist --watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/react": "^18.2.41",
+    "@types/react-dom": "^18.2.17",
+    "@synanetics/panel-library": "^2.0.3",
+    "@babel/core": "^7.22.9",
+    "@babel/preset-env": "^7.22.9",
+    "@babel/preset-react": "^7.22.5",
+    "@babel/preset-typescript": "^7.22.11"
+  },
+  "dependencies": {
+    "fhirpath": "^3.9.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "typescript": "^5.3.2"
+  }
+}

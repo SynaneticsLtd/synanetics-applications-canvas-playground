@@ -1,0 +1,32 @@
+version: "3.8"
+services:
+  test-library:
+    image: "synaneticsltd/canvas-core-library:latest"
+    volumes:
+      - ./library/components:/app/components
+    ports:
+      - 8082:8080
+    environment:
+      - MANIFESTS=[{"type":"filesystem","target":"./dist/index.js","base":"/app/components"}]
+      - CORS_ORIGINS=http://localhost:8080
+
+  test-portal-client:
+    build:
+      context: ./test-portal/client
+    volumes:
+      - ./test-portal/client:/app
+    ports:
+      - 8080:8080
+
+  test-portal-server:
+    build:
+      context: ./test-portal/server
+    volumes:
+      - ./test-portal/server:/app
+    ports:
+      - 8081:8081
+    environment:
+      - LIBRARY_ROOT=http://test-library:8080
+
+networks:
+  default:

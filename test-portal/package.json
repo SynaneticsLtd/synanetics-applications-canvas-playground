@@ -1,0 +1,11 @@
+{
+  "name": "test-portal",
+  "version": "1.0.0",
+  "scripts": {
+    "installall": "npm --prefix client install && npm --prefix server install",
+    "client:dev": "npm --prefix client run dev",
+    "server:build": "npm --prefix server run build",
+    "server:serve": "npm --prefix server run serve"
+  },
+  "license": "ISC"
+}
