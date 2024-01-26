@@ -8,24 +8,45 @@ import fhirpath from "fhirpath"
 import React from "react"
 import { ReactComponentBase } from "../../ReactComponentBase"
 import panelDetails from "./index"
+import { ReactButton } from "./components/ReactButton/ReactButton"
 
-type TestPanelWithConfigurationType = HTMLElement &
+//We import the SCSS file here and attach it to the shadow DOM below
+import styles from "./ConfigurablePanel.scss"
+import { ReactTextField } from "./components/ReactTextField/ReactTextField"
+
+//Here we compose the type from types that are available in the panel-library
+//We do this so that TypeScript can help us know what functions and properties are available on the panel
+type ConfigurablePanelType = HTMLElement &
   HtmlElementWithCanvas &
   HtmlElementWithResource &
   HtmlElementWithConfiguration &
   ReactComponentBase
 
-export class TestPanelWithConfiguration extends createPanel<TestPanelWithConfigurationType, ReactComponentBase>(
+export class ConfigurablePanel extends createPanel<ConfigurablePanelType, ReactComponentBase>(
   panelDetails.schema,
   ReactComponentBase
 ) {
   configProcessedField: string
+  textFieldValue: string
+  textFieldValueChanged: (value: string) => void
 
   constructor() {
     super()
 
     this.configProcessedField = ""
+    this.textFieldValue = ""
 
+    //This is where we attach the styles to the shadow DOM
+    const stylesRoot = document.createElement("style")
+    stylesRoot.appendChild(document.createTextNode(styles))
+    this.shadow.append(stylesRoot)
+
+    this.textFieldValueChanged = (value: string) => {
+      this.textFieldValue = value
+      this.render()
+    }
+
+    //Because this panel uses the ReactComponentBase, it has a jsxRootComponent (unlike TextExternalPanel)
     this.jsxRootComponent = () => {
       const fieldFhirPath = this.configuration?.field || "Not set"
 
@@ -40,10 +61,17 @@ export class TestPanelWithConfiguration extends createPanel<TestPanelWithConfigu
 
       return (
         <div>
-          <h3>Test External Panel with Configuration</h3>
+          <h3>Test React Panel that can be configured</h3>
           <p>Patient: {name}</p>
           <p>The fhirpath in the configuration is: {fieldFhirPath}</p>
           <p>Fhirpath result on Patient: {this.configProcessedField}</p>
+          <ReactTextField value={this.textFieldValue} onChange={this.textFieldValueChanged} />
+          <ReactButton
+            name="Test button"
+            onClick={() => {
+              alert("Test react button clicked")
+            }}
+          />
         </div>
       )
     }
@@ -55,6 +83,10 @@ export class TestPanelWithConfiguration extends createPanel<TestPanelWithConfigu
     this.render()
   }
 
+  //This is the callback that is called when the configuration was changed
+  //Use this callback to act on changes to the configuration
+  //Since configurations are loaded async, you will need to wait on the configuration on first render too,
+  //it won't be available immediately.
   configurationChangedCallback(): void {
     console.log("Configuration was changed", this.configuration)
 
@@ -71,4 +103,4 @@ export class TestPanelWithConfiguration extends createPanel<TestPanelWithConfigu
   }
 }
 
-customElements.define(panelDetails.schema.panelTag, TestPanelWithConfiguration)
+customElements.define(panelDetails.schema.panelTag, ConfigurablePanel)

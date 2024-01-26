@@ -4,10 +4,12 @@ import { HtmlElementWithConfiguration } from "../../../global"
 import { ReactComponentBase } from "../../ReactComponentBase"
 import panelDetails from "./index"
 
-type TestPanelWithConfigurationPanelConfigurationType = HTMLElement & HtmlElementWithConfiguration & ReactComponentBase
+//TODO: The configuration panel does not work at the moment because the library can't serve them yet
 
-export class TestPanelWithConfigurationConfiguration extends createPanel<
-  TestPanelWithConfigurationPanelConfigurationType,
+type ConfigurablePanelPanelConfigurationType = HTMLElement & HtmlElementWithConfiguration & ReactComponentBase
+
+export class ConfigurablePanelConfiguration extends createPanel<
+  ConfigurablePanelPanelConfigurationType,
   ReactComponentBase
 >(panelDetails.schema, ReactComponentBase) {
   constructor() {
@@ -36,4 +38,4 @@ export class TestPanelWithConfigurationConfiguration extends createPanel<
   }
 }
 
-customElements.define(`${panelDetails.schema.configurationTag}`, TestPanelWithConfigurationConfiguration)
+customElements.define(`${panelDetails.schema.configurationTag}`, ConfigurablePanelConfiguration)

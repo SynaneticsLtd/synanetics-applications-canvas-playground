@@ -1,0 +1,5 @@
+// This file brings together all the SCSS files for the ConfigurablePanel panel
+// This makes it simpler to then just import this single file in the panel.
+
+@import "./components/ReactButton/ReactButton.scss";
+@import "./components/ReactTextField/ReactTextField.scss";
