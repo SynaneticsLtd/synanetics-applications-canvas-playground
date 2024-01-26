@@ -1,6 +1,6 @@
 import React from "react"
-import "./ReactButton.scss" // <- You will see that this does not work.
-// This is due to the way webpack tries to load css files and it not being able to attach it to the shadow DOM
+//Be advised that import "./ReactButton.scss" will not work here
+//This is due to the way webpack tries to load css files and it not being able to attach it to the shadow DOM
 //To use SCSS or CSS in web components, we usually attach it manually to the shadow DOM. (See ConfigurablePanel.tsx)
 
 interface ReactButtonProps {
