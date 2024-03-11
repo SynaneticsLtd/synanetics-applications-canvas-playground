@@ -11,7 +11,7 @@ const ExampleWrapper = ({ children }: { children: ReactNode }) => {
 }
 
 /**
- * Sets up a panel for use with React and adds default wrapper elements. It should be used as the base class of panels.
+ * Sets up a panel for use with React and adds default wrapper elements. It can be used as a base class for panel which are built using React.
  */
 export class ReactComponentBase extends HTMLElement {
   /**The main React component for the panel. This will re-render whenever this.render() is called in the panel */

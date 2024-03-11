@@ -1,13 +1,16 @@
 import { PanelSchema, describePanel } from "@synanetics/panel-library/library"
 
-export type TestPanelWithConfigurationConfigurationType = {
+export type ConfigurablePanelConfigurationType = {
   field: string
 }
 
+//This is the JSON schema for the configuration this panel uses and this schema
+//is what is used in the portal admin section to render an editor which can configure this panel.
+//TODO: More documentation is needed on the possible options.
 export const configurationSchema = {
   $schema: "http://json-schema.org/draft-07/schema#",
-  title: "TestPanelWithConfiguration Configuration",
-  description: "Configuration schema for the panel called TestPanelWithConfiguration",
+  title: "ConfigurablePanel Configuration",
+  description: "Configuration schema for the panel called ConfigurablePanel",
   type: "object",
   properties: {
     configuration: {
@@ -25,15 +28,15 @@ export const configurationSchema = {
 }
 
 const schema: PanelSchema = {
-  panelName: "TestPanelWithConfiguration",
-  panelTag: "test-panel-with-configuration",
-  panelPath: "./TestPanelWithConfiguration.tsx",
+  panelName: "ConfigurablePanel",
+  panelTag: "configurable-panel",
+  panelPath: "./ConfigurablePanel.tsx",
   description: "Test Panel With Configuration",
   resources: ["Patient"],
   apis: [],
   configuration: configurationSchema,
-  configurationTag: "test-panel-with-configuration-configuration",
-  configurationPath: "./TestPanelWithConfigurationConfiguration.tsx",
+  configurationTag: "configurable-panel-configuration",
+  configurationPath: "./ConfigurablePanelConfiguration.tsx",
 }
 
 const { panelTag, configurationTag, description, panelPath, configurationPath, panelName } = schema

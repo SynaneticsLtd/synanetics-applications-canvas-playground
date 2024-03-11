@@ -32,6 +32,7 @@ export class TestExternalPanel extends createPanel<TestExternalPanelType, HTMLEl
       name = `${patientName.given.join(" ")} ${patientName.family}`
     }
 
+    //This panel just directly sets the innerHTML on the shadow as it does not use React or other JS frameworks/libraries
     this.shadow.innerHTML = `
       <div>
         <h3>TestExternalPanel</h3>
