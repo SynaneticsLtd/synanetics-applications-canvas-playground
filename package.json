@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "installall": "npm --prefix library/components install && npm --prefix test-portal run installall",
+    "installall": "npm ci && npm --prefix library/components ci && npm --prefix test-portal run installall",
     "watch:components": "npm --prefix library/components run watch",
     "build:components": "npm --prefix library/components run build",
     "test-portal:client": "npm --prefix test-portal run client:dev",
