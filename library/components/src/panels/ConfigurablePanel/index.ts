@@ -37,9 +37,15 @@ const schema: PanelSchema = {
   configuration: configurationSchema,
   configurationTag: "configurable-panel-configuration",
   configurationPath: "./ConfigurablePanelConfiguration.tsx",
+  events: [
+    {
+      name: "alert-event",
+      description: "Test event that triggers an alert from the canvas.",
+    },
+  ],
 }
 
-const { panelTag, configurationTag, description, panelPath, configurationPath, panelName } = schema
+const { panelTag, configurationTag, description, panelPath, configurationPath, panelName, events } = schema
 
 export default {
   ...describePanel(schema),
@@ -50,4 +56,5 @@ export default {
   configurationPath,
   panelName,
   schema,
+  events,
 }

@@ -1,14 +1,15 @@
 import {
   HtmlElementWithCanvas,
   HtmlElementWithConfiguration,
+  HtmlElementWithContextualEvent,
   HtmlElementWithResource,
   createPanel,
 } from "@synanetics/panel-library"
 import fhirpath from "fhirpath"
 import React from "react"
 import { ReactComponentBase } from "../../ReactComponentBase"
-import panelDetails from "./index"
 import { ReactButton } from "./components/ReactButton/ReactButton"
+import panelDetails from "./index"
 
 //We import the SCSS file here and attach it to the shadow DOM below
 import styles from "./ConfigurablePanel.scss"
@@ -20,7 +21,8 @@ type ConfigurablePanelType = HTMLElement &
   HtmlElementWithCanvas &
   HtmlElementWithResource &
   HtmlElementWithConfiguration &
-  ReactComponentBase
+  HtmlElementWithContextualEvent
+ReactComponentBase
 
 export class ConfigurablePanel extends createPanel<ConfigurablePanelType, ReactComponentBase>(
   panelDetails.schema,
@@ -70,6 +72,12 @@ export class ConfigurablePanel extends createPanel<ConfigurablePanelType, ReactC
             name="Test button"
             onClick={() => {
               alert("Test react button clicked")
+            }}
+          />
+          <ReactButton
+            name="Test button"
+            onClick={() => {
+              this.triggerContextualEvent("alert-event", { hello: "hi" })
             }}
           />
         </div>

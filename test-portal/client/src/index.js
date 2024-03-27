@@ -5,6 +5,13 @@ window.canvas = {
   resourceTypes: ["Patient"],
 }
 
-// window.System.import("http://localhost:8082/ConfigurablePanel/1.0.0/configuration")
+const alertEventHandler = (context) => {
+  console.log({ context })
+  alert(`Alert triggered by contextual event - Details passed: ${JSON.stringify(context)}`)
+}
 
-// document.getElementById("canvas").setContext({ Patient: [patientResource] })
+document.getElementById("canvas").setEventHandlers({
+  "test-panel-with-configuration-ConfigurablePanel": {
+    "alert-event": alertEventHandler,
+  },
+})
