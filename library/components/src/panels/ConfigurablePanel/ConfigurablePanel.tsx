@@ -21,8 +21,8 @@ type ConfigurablePanelType = HTMLElement &
   HtmlElementWithCanvas &
   HtmlElementWithResource &
   HtmlElementWithConfiguration &
-  HtmlElementWithContextualEvent
-ReactComponentBase
+  HtmlElementWithContextualEvent &
+  ReactComponentBase
 
 export class ConfigurablePanel extends createPanel<ConfigurablePanelType, ReactComponentBase>(
   panelDetails.schema,
@@ -77,6 +77,9 @@ export class ConfigurablePanel extends createPanel<ConfigurablePanelType, ReactC
           <ReactButton
             name="Test button"
             onClick={() => {
+              /* There is work that needs doing in the panel library as contextual events don't
+               * necessarily need to have a FhirContext type hence the ts-ignore
+               * @ts-ignore*/
               this.triggerContextualEvent("alert-event", { hello: "hi" })
             }}
           />
