@@ -1,14 +1,15 @@
 import {
   HtmlElementWithCanvas,
   HtmlElementWithConfiguration,
+  HtmlElementWithContextualEvent,
   HtmlElementWithResource,
   createPanel,
 } from "@synanetics/panel-library"
 import fhirpath from "fhirpath"
 import React from "react"
 import { ReactComponentBase } from "../../ReactComponentBase"
-import panelDetails from "./index"
 import { ReactButton } from "./components/ReactButton/ReactButton"
+import panelDetails from "./index"
 
 //We import the SCSS file here and attach it to the shadow DOM below
 import styles from "./ConfigurablePanel.scss"
@@ -20,6 +21,7 @@ type ConfigurablePanelType = HTMLElement &
   HtmlElementWithCanvas &
   HtmlElementWithResource &
   HtmlElementWithConfiguration &
+  HtmlElementWithContextualEvent &
   ReactComponentBase
 
 export class ConfigurablePanel extends createPanel<ConfigurablePanelType, ReactComponentBase>(
@@ -70,6 +72,15 @@ export class ConfigurablePanel extends createPanel<ConfigurablePanelType, ReactC
             name="Test button"
             onClick={() => {
               alert("Test react button clicked")
+            }}
+          />
+          <ReactButton
+            name="Test button"
+            onClick={() => {
+              /* There is work that needs doing in the panel library as contextual events don't
+               * necessarily need to have a FhirContext type hence the ts-ignore
+               * @ts-ignore*/
+              this.triggerContextualEvent("alert-event", { hello: "hi" })
             }}
           />
         </div>

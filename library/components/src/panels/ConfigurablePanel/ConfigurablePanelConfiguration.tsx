@@ -1,6 +1,5 @@
-import { createPanel } from "@synanetics/panel-library"
+import { HtmlElementWithConfiguration, createPanel } from "@synanetics/panel-library"
 import React from "react"
-import { HtmlElementWithConfiguration } from "../../../global"
 import { ReactComponentBase } from "../../ReactComponentBase"
 import panelDetails from "./index"
 
