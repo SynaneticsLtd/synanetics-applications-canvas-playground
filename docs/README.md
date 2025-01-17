@@ -95,19 +95,18 @@ Once you have completed your Panel and schema it is important that you run `npm 
 
 You can now add the panel created in the previous step to the canvas by modifying the `index.html` in `test-portal/client`, adding a `<syn-panel>` with the correct attributes.
 
-The two mandatory things are `panel-id` and `panel`:
+The two mandatory attributes are `panel-id` and `panel`:
 
 - `panel-id` is used to serve as a unique identifier for the panel
 - `panel` is used to find the correct panel from the registry.
 
-It is important that these match exactly what are in the schema you have created. For example, in the `TestExternalPanel` schema there is the panelName and panelTag are defined as such:
+It is important that the `panelName` in the schema matches the `panel` attribute in the html. For example, in the `TestExternalPanel` schema the `panelName` is defined as:
 
 ```
 panelName: "TestExternalPanel",
-panelTag: "test-external-panel",
 ```
 
-When rendering the tag in the index.html they must match exactly, where the `panel-id` attribute is the `panelTag` and the `panel` attribute is the `panelName`, e.g:
+When rendering the tag in the `index.html` it must match exactly, where the `panel` attribute is the `panelName`, e.g:
 
 ```
 <syn-panel panel-id="test-external-panel" panel="TestExternalPanel" context="patient"></syn-panel>
@@ -119,7 +118,7 @@ If for some reason you do not see your component try the following as first step
 
 - Double check that you have rebuilt the components library with `npm run build:components`
 - If you already had you local environment running, try an empty cache and hard reload as the browser can cache the files.
-- Double check that the panelName and panelTag in the index.html match exactly what are in the schema for your panel component.
+- Double check that the `panel` attribute in the index.html matches the `panelName` in the schema for your panel component.
 - Ensure all the servers have started correctly in Docker
 
 ### Exercise 3: Consuming resources
@@ -162,7 +161,7 @@ As with providing resources, there is additional setup in the schema and the htm
 - In the `index.html` you will need to add the provide property to the syn panel that will be providing the resources, e.g.
   `<syn-panel panel-id="test-patient-selector" panel="TestPatientSelector" provide="patient"></syn-panel>`.
 
-In `TestExternalPanel.ts` the `provideResources` method is called when clicking a button, but this could also just be passed directly into the render method for example and it would instantly provide that data to the component.
+In `TestPatientSelector.ts` the `provideResources` method is called when clicking a button, but this could also just be passed directly into the render method for example and it would instantly provide that data to the canvas.
 
 #### Provide resources to the canvas
 
