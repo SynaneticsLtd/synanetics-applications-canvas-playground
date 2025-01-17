@@ -24,9 +24,10 @@
   </head>
   <body>
     <syn-canvas id="canvas" library-root="http://localhost:8081">
-      <syn-panel panel-id="test-external-panel" panel="TestExternalPanel" context="patient"></syn-panel>
+      <syn-panel panel-id="test-external-panel" panel="TestExternalPanel" context="patient,organization"></syn-panel>
       <syn-panel panel-id="test-patient-selector" panel="TestPatientSelector" provide="patient"></syn-panel>
       <syn-panel panel-id="test-panel-with-configuration" panel="ConfigurablePanel" context="patient"></syn-panel>
+      <syn-panel panel-id="test-organization-selector" panel="TestOrganizationSelector" provide="organization" context="patient"></syn-panel>
     </syn-canvas>
     <!-- <test-panel-with-configuration-configuration></test-panel-with-configuration-configuration> -->
   </body>

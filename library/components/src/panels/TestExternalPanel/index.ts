@@ -5,7 +5,7 @@ const schema: PanelSchema = {
   panelTag: "test-external-panel",
   panelPath: "./TestExternalPanel.ts",
   description: "Test External Panel",
-  resources: ["Patient"],
+  resources: ["Patient", "Organization"],
   apis: [],
 }
 
