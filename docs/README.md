@@ -12,8 +12,8 @@ The `canvas-panel-playground` is a simple implementation of the canvas/panel arc
 
 Learn how to create new panels and add them to the canvas.
 
-- [Exercise 1: Creating a new basic Panel](#creating-a-new-panel)
-- [Exercise 2: Adding a Panel to the canvas](#adding-a-panel-to-the-canvas)
+- [Exercise 1: Creating a new basic Panel](#exercise-1-creating-a-new-panel)
+- [Exercise 2: Adding a Panel to the canvas](#exercise-2-adding-a-panel-to-the-canvas)
 
 ### 2. Working with FHIR resources
 
@@ -43,7 +43,7 @@ For the purposes of these exercises, we are going to use the test-portal canvas 
 
 All paths will be referenced from the root of this repository.
 
-### Exercise 1: Creating a new Panel {#creating-a-new-panel}
+### Exercise 1: Creating a new Panel
 
 Panels are isolated components that can receive data from the Canvas and render them to a user. They require a minimum of two files, an index.ts that will contain a schema for the panel, and a file that will render a component with the support of the PanelLibrary.
 
@@ -91,7 +91,7 @@ Now you understand the main parts that make up a Panel components go ahead and b
 
 Once you have completed your Panel and schema it is important that you run `npm run build:components` for them to be built and picked up in the registry. Alternatively, you can run `npm run watch:components` and this will rebuild every time you save the file.
 
-### Exercise 2: Adding a Panel to the canvas {#adding-a-panel-to-the-canvas}
+### Exercise 2: Adding a Panel to the canvas
 
 You can now add the panel created in the previous step to the canvas by modifying the `index.html` in `test-portal/client`, adding a `<syn-panel>` with the correct attributes.
 
@@ -212,7 +212,7 @@ export class ReactPanel extends createPanel<ReactPanelType, ReactComponentBase>(
 
 - Anything you now assign to the `jsxRootComponent` will now be the child of any wrappers you defined in the BaseComponent
 
-### Exercise 7: Trigger a canvas event from a panel {#trigger-an-event-from-a-panel}
+### Exercise 7: Trigger a canvas event from a panel
 
 The canvas itself can be setup to handle certain events. This is useful if you want to trigger an event at a global level with data that is local to a specific panel. For example, rendering a error toast component for a page where the error came from a specific panel and you have error data which you need to get from that panel to the toast.
 
