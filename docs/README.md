@@ -79,7 +79,7 @@ In practice this means that we pass the schema panelTag as the first argument, a
 
 ##### render method
 
-`render` is a custom method to generate and populate the content of the custom element. For example, if you look in `testExternalPanel` you will see that this renders html using vanilla Javascript. If you look in `ConfigurablePanel.tsx` you will see it uses `this.jsxRootComponent` instead to render (this extends from the `ReactComponentBase.tsx`).
+`render` is a custom method to generate and populate the content of the custom element. For example, if you look in `testExternalPanel` you will see that this renders html using vanilla Javascript. For React based components, `ReactComponentBase.tsx` provides an implementation where `render` mounts the React component returned by `jsxComponent`, meaning in a panel you can extend the ReactComponentBase and simply return jsx with `this.jsxRootComponent`.
 
 ##### connectedCallback method
 
